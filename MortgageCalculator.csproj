@@ -1,13 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Stephanie.MortgageCalculator</PackageId>
     <Title>Stephanie's Mortgage Calculator Library</Title>
     <Description>C# Challenge Project</Description>
+    <RepositoryUrl>https://github.com/Stephaniebc08/MortgageCalculator.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>
