@@ -1,7 +1,19 @@
-﻿namespace MortgageCalculator
+﻿using Spectre.Console;
+using Spectre.Console.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace MortgageCalculator
 {
+
+
     internal class MortgageCalculator
     {
+
         static void Main(string[] args)
         {
             Console.WriteLine("Mortgage Calculator");
@@ -32,7 +44,15 @@
             Console.WriteLine("Payment Schedule:");
             Console.WriteLine("Month\t\tPayment\t\tRemaining Balance");
             Console.WriteLine("----------------------------------------");
-
+            var grid = new Grid();
+            grid.AddColumn();
+            grid.AddColumn();
+            grid.AddColumn();
+            grid.AddRow(new Text[]{
+            new Text("Month", new Style(Color.Red, Color.Black)).LeftJustified(),
+            new Text("Monthly Payment", new Style(Color.Green, Color.Black)).Centered(),
+            new Text("Remaining Balance", new Style(Color.Blue, Color.Black)).RightJustified()
+});
             for (int month = 1; month <= numberOfPayments; month++)
             {
                 // Calculate interest for the current month
@@ -46,8 +66,20 @@
 
                 // Output payment details for the current month
                 // Using an interpolated string for embedding expressions inside the string and allignment purposes the \t\t
-                Console.WriteLine($"{month}\t\t{monthlyPayment:C}\t\t{remainingBalance:C}");
+
+
+
+                // Add row
+                grid.AddRow(new string[] { month.ToString(), monthlyPayment.ToString("c"), remainingBalance.ToString("c") });
+                
+                
+                // Add header row 
+
+
+                // Write to Console
+               
             }
+            AnsiConsole.Write(grid);
 
 
             // Output the result
@@ -57,10 +89,19 @@
             Console.WriteLine($"Annual Interest Rate: {annualInterestRate:P}");
             Console.WriteLine($"Loan Term: {years} years");
             Console.WriteLine("----------------------------------------");
-            Console.WriteLine($"Monthly Payment: {monthlyPayment:C}");        
+            Console.WriteLine($"Monthly Payment: {monthlyPayment:C}");
             // Wait for user to acknowledge the results
             Console.WriteLine("\nPress any key to exit.");
             Console.ReadKey();
+
         }
-    }
-}
+
+           
+
+
+            }
+        }
+
+      
+ 
+
